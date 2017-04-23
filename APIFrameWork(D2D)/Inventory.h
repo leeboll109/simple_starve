@@ -8,11 +8,6 @@ private:
 	vector<Objects> _vObjects;
 	vector<Objects>::iterator _viObjects;
 
-	image* _invenItemSlot;
-	image* _invenHandSlot;
-	image* _invenArmorSlot;
-	image* _invenHelmetSlot;
-
 public:
 	Inventory();
 	~Inventory();

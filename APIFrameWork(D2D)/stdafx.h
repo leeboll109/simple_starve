@@ -126,7 +126,6 @@ extern ID2D1HwndRenderTarget* Rt;
 extern IWICImagingFactory *imagingFactory;
 extern ID2D1BitmapRenderTarget* CRt;
 extern ID2D1Bitmap* pBitmap;
-extern ID2D1RadialGradientBrush* m_pRadialGradientBrush;
 extern float crtAlpha;
 
 
