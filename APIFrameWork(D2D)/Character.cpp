@@ -122,7 +122,7 @@ void Character::render(void)
 	IMAGEMANAGER->render(L"ground", Rt);
 
 	tstring tmp = character_action[_action] + character_order[_order];
-	//IMAGEMANAGER->frameRender(tmp, Rt, characterX, characterY, frameX, 0);
+	IMAGEMANAGER->frameRender(tmp, Rt, characterX, characterY, frameX, 0);
 }
 
 
