@@ -27,7 +27,7 @@ HRESULT Character::init(void)
 	character_action[WAKEUP] = L"player_wakeup";
 
 	// item_in, item_out, wakeup
-	character_order[NONE] = L"";
+	character_order[NONE_ACTION] = L"";
 	// idle, idle_torch, pickup, actionFX,
 	character_order[NONE_DOWN] = L"_down";
 	character_order[NONE_SIDE] = L"_side";
@@ -43,8 +43,8 @@ HRESULT Character::init(void)
 	character_order[PST_SIDE] = L"_pst_side";
 	character_order[PST_UP] = L"_pst_up";
 
-	_action = WAKEUP;
-	_order = NONE;
+	_action = IDLE;
+	_order = NONE_DOWN;
 
 	isOpening = true;
 	count = 0;
@@ -67,24 +67,32 @@ void Character::update(void)
 		characterY -= CHARACTER_SPEED;
 		isWalk = true;
 		_dir = UP;
+		_action = RUN;
+		_order = PRE_UP;
 	}
 	// down
 	if (KEYMANAGER->isStayKeyDown('S')) {
 		characterY += CHARACTER_SPEED;
 		isWalk = true;
 		_dir = DOWN;
+		_action = RUN;
+		_order = PRE_DOWN;
 	}
 	//left
 	if (KEYMANAGER->isStayKeyDown('A')) {
 		characterX -= CHARACTER_SPEED;
 		isWalk = true;
 		_dir = LEFT;
+		_action = RUN;
+		_order = PRE_SIDE;
 	}
 	//right
 	if (KEYMANAGER->isStayKeyDown('D')) {
 		characterX += CHARACTER_SPEED;
 		isWalk = true;
 		_dir = RIGHT;
+		_action = RUN;
+		_order = PRE_SIDE;
 	}
 
 	count++;
@@ -102,8 +110,25 @@ void Character::update(void)
 			frameX++;
 			if (frameX > 10) {
 				frameX = 0;
-				_action = IDLE;
-				_order = NONE_DOWN;
+				_action = RUN;
+				switch (_dir)
+				{
+				case DOWN:
+					_order = LOOP_DOWN;
+					break;
+				case UP:
+					_order = LOOP_UP;
+					break;
+				case LEFT:
+					_order = LOOP_SIDE;
+					break;
+				case RIGHT:
+					_order = LOOP_SIDE;
+					break;
+				default:
+					break;
+				}
+				_order = LOOP_UP;
 			}
 		}
 		else {
