@@ -27,7 +27,7 @@ enum CHARACTER_ACTION {
 };
 // 캐릭터 움직임 순서
 enum CHARACTER_ORDER {
-	NONE,
+	NONE_ACTION,
 	NONE_DOWN,
 	NONE_SIDE,
 	NONE_UP,
